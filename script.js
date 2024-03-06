@@ -1,7 +1,7 @@
 
 const gridContainer = document.querySelector('.grid-container')
 
-document.addEventListener('dragstart', event =>{
+document.addEventListener('dragstart', event => {
     event.preventDefault();
 })
 
@@ -30,15 +30,27 @@ function drawHandler(){
         event.target.style.background = 'black';
         mouseIsDown = true;
     });
-    
+
     gridContainer.addEventListener('mouseup', () => {
         mouseIsDown = false;
     })
 
+
     gridContainer.addEventListener('mouseover', event => {
         if (mouseIsDown){
             event.target.style.background = 'black';
+        } else {
+            // Shadow effect when hovering.
+            event.target.style.background = (event.target.style.background === 'black') ?
+                                            'black':
+                                            '#dedddc';
         }
+    })
+    
+    gridContainer.addEventListener('mouseout', event => {
+        event.target.style.background = (event.target.style.background === 'black') ?
+                                        'black':
+                                        'white';
     })
 }
 
