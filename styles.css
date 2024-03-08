@@ -5,19 +5,35 @@ body {
     margin: 0px;
     padding: 0px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
 }
 
-.grid-container{
+.header,
+.footer {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.body {
+    display: flex;
+    width: 100%;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.body > #grid-container{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     height: 500px;
     width: 500px;
+    min-height: 500px;
+    min-height: 500px;
     box-shadow: 0px 0px 10px black;
     border-radius: 2px;
-    
+    position:absolute ;
 }
 
 .grid-row {
@@ -27,4 +43,19 @@ body {
 
 .grid-row > .grid-square {
     flex: 1;
+}
+
+.body > #options-container {
+    border: 1px solid black;
+    height: 500px;
+    min-width: 300px;
+    margin-right: auto;
+}
+
+.buttons {
+    display: flex;
+    border: 2px solid red;
+    padding: 5px;
+    width: 60px;
+    justify-content: center;
 }

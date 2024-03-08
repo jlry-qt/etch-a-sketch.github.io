@@ -1,5 +1,8 @@
 
-const gridContainer = document.querySelector('.grid-container')
+const gridContainer = document.querySelector('#grid-container')
+const clearButton = document.querySelector('#clear-button');
+
+clearButton.addEventListener('click', clearHandler);
 
 document.addEventListener('dragstart', event => {
     event.preventDefault();
@@ -50,8 +53,20 @@ function drawHandler(){
     gridContainer.addEventListener('mouseout', event => {
         event.target.style.background = (event.target.style.background === 'black') ?
                                         'black':
-                                        'white';
+                                        '';
     })
+}
+
+
+/* 
+LISTEN for click event
+FIND ALL colored square
+TURN them into white
+*/
+function clearHandler(){
+    document.querySelectorAll('.grid-square').forEach(gridSquare => {
+        gridSquare.style.background = '';
+    });
 }
 
 createGrid();
