@@ -59,3 +59,7 @@ body {
     width: 60px;
     justify-content: center;
 }
+
+.cursor-pointed {
+    background: #CECCCC;
+}
