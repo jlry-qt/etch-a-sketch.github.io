@@ -1,7 +1,7 @@
 
 const gridContainer = document.querySelector('#grid-container');
-const optionsContainer = document.querySelector('#options-container');
-const drawModes = document.querySelector('#draw-modes');
+const buttons = document.querySelectorAll('.buttons');
+const drawModes = document.querySelectorAll('.draw-modes');
 const clearButton = document.querySelector('#clear-button');
 
 clearButton.addEventListener('click', clearGrid);
@@ -31,8 +31,10 @@ function drawHandler(){
     let mouseIsDown = false;
     let mode = 'normal-draw';
 
-    drawModes.addEventListener('click', event => {
-        mode = event.target.id;
+    drawModes.forEach(button => {
+        button.addEventListener('click', event => {
+            mode = event.target.id;
+        })
     })
 
     gridContainer.addEventListener('mousedown', event => {
@@ -49,12 +51,11 @@ function drawHandler(){
         mouseIsDown = false;
     })
 
-    gridContainer.addEventListener('mouseover', event => {
+    gridContainer.addEventListener('mousemove', event => {
+        if (event.target === this){
+            return
+        }
         if (mouseIsDown){
-            if (event.target.style.background != ''){
-                return
-            }
-
             if (mode === 'normal-draw') {
                 event.target.style.background = 'black';
             } else if (mode === 'rainbow-draw'){
@@ -72,6 +73,43 @@ function drawHandler(){
 
 
 
+}
+
+function buttonsUI(){
+    buttons.forEach(button => {
+        button.addEventListener('mouseover', event =>{
+            event.target.style.outline = "2px solid #2252CC";
+        })
+    })
+
+    buttons.forEach(button => {
+        button.addEventListener('mouseout', event =>{
+            event.target.style.outline = "";
+        })
+    })
+
+    
+}
+
+function optionChooseUI() {
+   
+    buttonsUI();
+
+    
+    let previousSelected = document.querySelector('#normal-draw');
+    drawModes.forEach(button => {
+        button.addEventListener('click', event => {
+        if ([...event.target.classList].includes('selected')){
+            return
+        }
+        event.target.classList.toggle('selected');
+        previousSelected.classList.toggle('selected');
+        previousSelected = event.target;
+    })
+
+        
+        
+    })
 }
 
 
@@ -99,3 +137,4 @@ function drawRandomColor(){
 
 createGrid();
 drawHandler();
+optionChooseUI();
