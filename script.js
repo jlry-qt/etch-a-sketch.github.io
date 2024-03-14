@@ -51,11 +51,12 @@ function drawHandler(){
         mouseIsDown = false;
     })
 
-    gridContainer.addEventListener('mousemove', event => {
-        if (event.target === this){
-            return
-        }
+    gridContainer.addEventListener('mouseover', event => {
         if (mouseIsDown){
+            if (event.target.style.background != ''){
+                return;
+            }
+
             if (mode === 'normal-draw') {
                 event.target.style.background = 'black';
             } else if (mode === 'rainbow-draw'){
